@@ -1,0 +1,22 @@
+{
+  "name": "fixturepin",
+  "version": 1,
+  "localFirst": true,
+  "networkRequired": false,
+  "commands": {
+    "record": "fixturepin record",
+    "scan": "fixturepin scan",
+    "report": "fixturepin report --write",
+    "doctor": "fixturepin doctor"
+  },
+  "ci": {
+    "recommendedOrder": ["npm ci", "npm run build", "fixturepin scan", "npm test"],
+    "driftExitCode": 2
+  },
+  "artifacts": [".fixturepin/manifest.json", ".fixturepin/report.md"],
+  "safety": {
+    "uploadsContent": false,
+    "redactsBeforeHashing": true,
+    "defaultIgnores": [".git", "node_modules", "dist", "build", "coverage", ".fixturepin"]
+  }
+}
