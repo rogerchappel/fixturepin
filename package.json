@@ -11,14 +11,14 @@
     ".": "./dist/src/index.js"
   },
   "files": [
-    "dist",
+    "dist/src",
     "README.md",
     "LICENSE"
   ],
   "scripts": {
     "build": "tsc",
     "check": "tsc --noEmit",
-    "test": "node --test \"dist/**/*.test.js\"",
+    "test": "npm run build && node --test \"dist/tests/**/*.test.js\"",
     "smoke": "npm run build && bash scripts/smoke.sh",
     "package:smoke": "npm pack --dry-run",
     "release:check": "npm test && npm run check && npm run build && npm run smoke && npm run package:smoke"
