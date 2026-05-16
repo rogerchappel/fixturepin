@@ -78,6 +78,31 @@ Use custom fixture directories:
 }
 ```
 
+
+## CI example
+
+Run `fixturepin scan` before the test suite so fixture drift is reviewed intentionally:
+
+```yaml
+name: fixture drift
+
+on: [pull_request]
+
+jobs:
+  fixturepin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npx fixturepin scan
+      - run: npm test
+```
+
+If a fixture changed on purpose, run `fixturepin record`, commit the updated `.fixturepin/manifest.json`, and include the reason in the PR.
+
 ## Safety model
 
 FixturePin does not require network access, does not upload repository content, and refuses to read outside the workspace unless `allowHome` is explicitly enabled. Defaults ignore `.git`, `node_modules`, build outputs, caches, and `.fixturepin` itself.
