@@ -1,6 +1,6 @@
 # FixturePin PRD
 
-Status: in-progress
+Status: MVP complete
 
 ## Summary
 

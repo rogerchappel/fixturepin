@@ -26,5 +26,6 @@
 
 - [x] Add fixture-backed unit tests.
 - [x] Add a real CLI smoke test that records, scans, reports, and detects drift.
+- [x] Add CI coverage for install, check, test, build, smoke, and repository validation.
 - [ ] Expand ignore matching to full gitignore-style globs.
 - [ ] Add manifest signing or attestation experiments after V1.

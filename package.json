@@ -3,6 +3,14 @@
   "version": "0.1.0",
   "description": "Pin fixture integrity manifests so quiet test fixture drift gets caught early.",
   "type": "module",
+  "homepage": "https://github.com/rogerchappel/fixturepin#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rogerchappel/fixturepin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rogerchappel/fixturepin/issues"
+  },
   "bin": {
     "fixturepin": "./dist/src/cli.js"
   },
