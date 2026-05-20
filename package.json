@@ -20,6 +20,8 @@
   },
   "files": [
     "dist/src",
+    "docs",
+    "scripts",
     "README.md",
     "LICENSE"
   ],
