@@ -1,7 +1,8 @@
 #!/usr/bin/env node
-import { existsSync, mkdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, realpathSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { DEFAULT_CONFIG, loadConfig } from "./config.js";
 import { scan, writeManifest } from "./manifest.js";
 import { renderMarkdownReport, renderManifestSummary, writeReport } from "./report.js";
@@ -103,7 +104,7 @@ function print(text: string): number {
   return 0;
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1] && realpathSync(process.argv[1]) === fileURLToPath(import.meta.url)) {
   main().then((code) => {
     process.exitCode = code;
   }).catch((error: unknown) => {
