@@ -18,6 +18,7 @@ npm install && npm run build
 npx fixturepin init
 npx fixturepin record
 npx fixturepin scan
+npx fixturepin --version
 ```
 
 `record` writes:
@@ -35,6 +36,7 @@ fixturepin record [--json]   # pin current fixture state
 fixturepin scan [--json]     # compare current state with manifest
 fixturepin report [--write]  # print or write a Markdown report
 fixturepin doctor            # inspect local config and fixture dirs
+fixturepin --version         # print the installed package version
 ```
 
 Exit codes:
@@ -129,18 +131,6 @@ Before hashing text files, FixturePin redacts common token shapes such as GitHub
 
 ## Development
 
-```bash
-npm install
-npm test
-npm run check
-npm run build
-npm run smoke
-npm run package:smoke
-bash scripts/validate.sh
-```
-
-## Development
-
 Run the same checks locally before opening a change:
 
 ```sh
@@ -152,3 +142,7 @@ npm run smoke
 npm run package:smoke
 npm run release:check
 ```
+
+`npm run package:smoke` packs the project, installs the tarball into a temporary
+app, checks the installed binary version, records and scans a fixture tree, and
+confirms intentional fixture drift exits non-zero.
