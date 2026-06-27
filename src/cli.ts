@@ -1,10 +1,14 @@
 #!/usr/bin/env node
 import { existsSync, mkdirSync, writeFileSync } from "node:fs";
+import { createRequire } from "node:module";
 import path from "node:path";
 import { DEFAULT_CONFIG, loadConfig } from "./config.js";
 import { scan, writeManifest } from "./manifest.js";
 import { renderMarkdownReport, renderManifestSummary, writeReport } from "./report.js";
 import type { OutputFormat } from "./types.js";
+
+const require = createRequire(import.meta.url);
+const { version } = require("../../package.json") as { version: string };
 
 interface CliOptions {
   cwd: string;
@@ -13,13 +17,11 @@ interface CliOptions {
   write: boolean;
 }
 
-const VERSION = "0.1.0";
-
 export async function main(argv = process.argv.slice(2), cwd = process.cwd()): Promise<number> {
   const command = argv[0];
   const options: CliOptions = { cwd, json: argv.includes("--json"), markdown: argv.includes("--markdown"), write: argv.includes("--write") };
   if (!command || command === "help" || command === "--help" || command === "-h") return printHelp();
-  if (command === "--version" || command === "version") return print(`${VERSION}\n`);
+  if (command === "--version" || command === "version") return print(`${version}\n`);
   if (command === "init") return init(options);
   if (command === "record") return record(options);
   if (command === "scan") return runScan(options);
